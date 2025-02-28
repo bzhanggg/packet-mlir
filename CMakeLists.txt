@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 17 CACHE STRING "C++ standard to conform to")
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 set(CMAKE_PREFIX_PATH "/Volumes/workplace/llvm-project/build/lib/cmake/mlir;/Volumes/workplace/llvm-project/build/lib/cmake/llvm" CACHE STRING "Prefix paths for dependencies")
+include_directories("/Volumes/workplace/llvm-project/mlir/include")
 
 find_package(MLIR REQUIRED CONFIG)
 find_package(LLVM REQUIRED CONFIG)

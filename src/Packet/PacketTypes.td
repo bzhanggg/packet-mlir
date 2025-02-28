@@ -9,4 +9,15 @@ class Packet_Type<string name, string typeMnemonic> : TypeDef<Packet_Dialect, na
   let mnemonic = typeMnemonic;
 }
 
+def Packet : Packet_Type<"Header", "packet"> {
+  let summary = "The packet header";
+
+  let description = [{
+    A type for the packet header metadata
+  }];
+
+  let parameters = (ins "int":$degreeBound);
+  let assemblyFormat = "`<`$degreeBound`>`";
+}
+
 #endif // DIALECT_PACKET_PACKETTYPES_TD_

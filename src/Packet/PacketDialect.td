@@ -1,6 +1,7 @@
 #ifndef DIALECT_PACKET_PACKETDIALECT_TD_
 #define DIALECT_PACKET_PACKETDIALECT_TD_
 
+include "mlir/IR/OpBase.td"
 include "mlir/IR/DialectBase.td"
 
 def Packet_Dialect : Dialect {
