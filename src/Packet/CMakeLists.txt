@@ -11,6 +11,7 @@ mlir_tablegen(PacketTypes.cpp.inc -gen-typedef-decls -typedefs-dialect=packet)
 # dialect
 mlir_tablegen(PacketDialect.h.inc -gen-op-decls -dialect=packet)
 mlir_tablegen(PacketDialect.cpp.inc -gen-op-decls -dialect=packet)
+# tablegen
 add_public_tablegen_target(MLIRPacketOpsIncGen)
 add_dependencies(mlir-headers MLIRPacketOpsIncGen)
 
@@ -21,7 +22,17 @@ add_mlir_dialect_library(MLIRPacket
     PacketOps.cpp
 
     ADDITIONAL_HEADER_DIRS
-    ${PROJECT_SOURCE_DIR}/src/Packet
+    ${CMAKE_BINARY_DIR}/src
 
     LINK_LIBS PUBLIC
     )
+
+
+target_include_directories(MLIRPacket PRIVATE
+    ${CMAKE_BINARY_DIR}/src
+    ${MLIR_INCLUDE_DIRS}
+    /Volumes/workplace/llvm-project/mlir/include
+)
+
+add_dependencies(MLIRPacket MLIRPacketOpsIncGen)
+add_dependencies(MLIRPacket mlir-headers)

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 BUILD_SYSTEM="Ninja"
-BUILD_DIR=./build-`echo ${BUILD_SYSTEM}| tr '[:upper:]' '[:lower:]'`
+BUILD_DIR=./build
 
 rm -rf $BUILD_DIR
 mkdir $BUILD_DIR
@@ -19,3 +19,4 @@ popd
 
 cmake --build $BUILD_DIR --target mlir-headers
 cmake --build $BUILD_DIR --target mlir-doc
+# cmake --build $BUILD_DIR --target MLIRPacket
