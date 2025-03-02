@@ -3,7 +3,7 @@ set -e
 
 BUILD_SYSTEM=Ninja
 BUILD_TAG=Ninja
-LLVM_DIR='/Volumes/workplace/llvm-project/'
+LLVM_DIR='external/llvm-project/'
 BUILD_DIR=$LLVM_DIR/build
 INSTALL_DIR=$LLVM_DIR/install
 

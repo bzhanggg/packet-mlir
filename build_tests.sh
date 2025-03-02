@@ -7,7 +7,7 @@ rm -rf $BUILD_DIR
 mkdir $BUILD_DIR
 pushd $BUILD_DIR
 
-LLVM_BUILD_DIR="/Volumes/workplace/llvm-project/build"
+LLVM_BUILD_DIR="external/llvm-project-build"
 cmake -G $BUILD_SYSTEM .. \
     -DLLVM_DIR="$LLVM_BUILD_DIR/lib/cmake/llvm" \
     -DMLIR_DIR="$LLVM_BUILD_DIR/lib/cmake/mlir" \
