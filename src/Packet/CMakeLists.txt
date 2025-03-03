@@ -7,10 +7,10 @@ mlir_tablegen(PacketOps.h.inc -gen-op-decls)
 mlir_tablegen(PacketOps.cpp.inc -gen-op-defs)
 # types
 mlir_tablegen(PacketTypes.h.inc -gen-typedef-decls -typedefs-dialect=packet)
-mlir_tablegen(PacketTypes.cpp.inc -gen-typedef-decls -typedefs-dialect=packet)
+mlir_tablegen(PacketTypes.cpp.inc -gen-typedef-defs -typedefs-dialect=packet)
 # dialect
-mlir_tablegen(PacketDialect.h.inc -gen-op-decls -dialect=packet)
-mlir_tablegen(PacketDialect.cpp.inc -gen-op-decls -dialect=packet)
+mlir_tablegen(PacketDialect.h.inc -gen-dialect-decls -dialect=packet)
+mlir_tablegen(PacketDialect.cpp.inc -gen-dialect-defs -dialect=packet)
 # tablegen
 add_public_tablegen_target(MLIRPacketOpsIncGen)
 add_dependencies(mlir-headers MLIRPacketOpsIncGen)
@@ -20,13 +20,12 @@ add_mlir_doc(PacketDialect PacketDialect Packet/ -gen-dialect-doc)
 add_mlir_dialect_library(MLIRPacket
     PacketDialect.cpp
     PacketOps.cpp
-
-    ADDITIONAL_HEADER_DIRS
-    ${CMAKE_BINARY_DIR}/src
-
+    DEPENDS
+        MLIRPacketOpsIncGen
     LINK_LIBS PUBLIC
-    )
-
+        MLIRIR
+        MLIRSupport
+)
 
 target_include_directories(MLIRPacket PUBLIC
     ${CMAKE_BINARY_DIR}/src
