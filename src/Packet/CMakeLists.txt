@@ -30,7 +30,6 @@ add_mlir_dialect_library(MLIRPacket
 target_include_directories(MLIRPacket PUBLIC
     ${CMAKE_BINARY_DIR}/src
     ${MLIR_INCLUDE_DIRS}
-    ${PROJECT_SOURCE_DIR}/external/llvm-project/mlir/include
 )
 
 add_dependencies(MLIRPacket MLIRPacketOpsIncGen mlir-headers)
