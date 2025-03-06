@@ -6,6 +6,6 @@
 #include "mlir/IR/DialectImplementation.h"
 
 #define GET_TYPEDEF_CLASSES
-#include "lib/Dialect/Poly/PolyTypes.h.inc"
+#include "src/Packet/PacketTypes.h.inc"
 
 #endif  // DIALECT_PACKET_PACKTTYPES_H_
