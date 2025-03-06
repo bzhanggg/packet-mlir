@@ -7,7 +7,6 @@
 /.cache
 
 # Visual Studio built-in CMake configuration
-.vscode*
 /CMakeSettings.json
 # Compilation databases
 compile_commands.json
