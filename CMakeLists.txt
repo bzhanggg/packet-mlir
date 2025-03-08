@@ -36,3 +36,4 @@ message(STATUS "Using project binaries in: ${PROJECT_BINARY_DIR}")
 
 add_subdirectory(src)
 add_subdirectory(tests)
+add_subdirectory(tools)

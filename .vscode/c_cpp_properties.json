@@ -11,7 +11,8 @@
                 "${workspaceFolder}/external/llvm-project/llvm/include",
                 "${workspaceFolder}/external/llvm-project/build/include",
                 "${workspaceFolder}/external/llvm-project/build/tools/mlir/include",
-                "${workspaceFolder}/build"
+                "${workspaceFolder}/build",
+                "${workspaceFolder}"
             ]
         }
     ],
