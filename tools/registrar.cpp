@@ -6,7 +6,7 @@
 
 int main(int argc, char **argv) {
     mlir::DialectRegistry registry;
-    registry.insert<mlir::packet::PacketDialect>();
+    registry.insert<mlir::parpack::packet::PacketDialect>();
     mlir::registerAllDialects(registry);
     mlir::registerAllPasses();
 

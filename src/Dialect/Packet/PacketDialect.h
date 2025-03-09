@@ -4,6 +4,6 @@
 #include "mlir/IR/DialectImplementation.h"
 
 // include the generated source file from TableGen
-#include "src/Packet/PacketDialect.h.inc"
+#include "src/Dialect/Packet/PacketDialect.h.inc"
 
 #endif // DIALECT_PACKETDIALECT_H_

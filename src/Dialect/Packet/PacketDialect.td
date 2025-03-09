@@ -12,9 +12,10 @@ def Packet_Dialect : Dialect {
         operations to a packet table
     }];
 
-    let cppNamespace = "::mlir::packet";
+    let cppNamespace = "::mlir::parpack::packet";
 
     let useDefaultTypePrinterParser = 1;
+    let hasConstantMaterializer = 1;
 }
 
 #endif // DIALECT_PACKET_PACKETDIALECT_TD_

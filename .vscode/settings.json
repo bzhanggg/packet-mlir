@@ -3,5 +3,8 @@
     "cmake.buildDirectory": "${workspaceFolder}/build",
     "files.associations": {
         "*.inc": "cpp"
-    }
+    },
+    "clangd.arguments": [
+        "--compile-commands-dir=./build"
+    ]
 }

@@ -13,11 +13,11 @@ cmake -G $BUILD_SYSTEM .. \
     -DMLIR_DIR="$LLVM_BUILD_DIR/lib/cmake/mlir" \
     -DBUILD_DEPS="ON" \
     -DBUILD_SHARED_LIBS="OFF" \
-    -DCMAKE_BUILD_TYPE=Debug
+    -DCMAKE_BUILD_TYPE=Debug \
+    -DCMAKE_EXPORT_COMPILE_COMMANDS=YES
 
 popd
 
-# cmake --build $BUILD_DIR --target mlir-generic-headers
 cmake --build $BUILD_DIR --target mlir-headers
 cmake --build $BUILD_DIR --target mlir-doc
 cmake --build $BUILD_DIR --target MLIRPacket
