@@ -5,6 +5,15 @@
         "*.inc": "cpp"
     },
     "clangd.arguments": [
-        "--compile-commands-dir=./build"
+        "--compile-commands-dir=./build",
+        "-I/${default}",
+        "${workspaceFolder}/build/src",
+        "${workspaceFolder}/build/tests",
+        "${workspaceFolder}/external/llvm-project/mlir/include",
+        "${workspaceFolder}/external/llvm-project/llvm/include",
+        "${workspaceFolder}/external/llvm-project/build/include",
+        "${workspaceFolder}/external/llvm-project/build/tools/mlir/include",
+        "${workspaceFolder}/build",
+        "${workspaceFolder}"
     ]
 }
