@@ -5,6 +5,7 @@ set(LIBS
     ${dialect_libs}
     ${conversion_libs}
     MLIRPacket
+    MLIRParallel
 )
 
 add_llvm_executable(registrar registrar.cpp)
