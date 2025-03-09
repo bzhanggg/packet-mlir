@@ -8,8 +8,8 @@ def Packet_Dialect : Dialect {
     let name = "packet";
     let summary = "A dialect for packet processing operations";
     let description = [{
-        The packet dialect defines types and operations for simple packet
-        operations to a packet table
+        The Packet dialect defines types and operations for simple packet
+        operations to a packet table.
     }];
 
     let cppNamespace = "::mlir::parpack::packet";
