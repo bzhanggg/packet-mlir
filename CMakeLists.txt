@@ -31,9 +31,6 @@ include_directories(${MLIR_INCLUDE_DIRS})
 include_directories(${PROJECT_SOURCE_DIR})
 include_directories(${PROJECT_BINARY_DIR})
 
-message(STATUS "Using project source in: ${PROJECT_SOURCE_DIR}")
-message(STATUS "Using project binaries in: ${PROJECT_BINARY_DIR}")
-
 add_subdirectory(src)
 add_subdirectory(tests)
 add_subdirectory(tools)

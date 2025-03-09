@@ -47,7 +47,7 @@ tool_dirs = [config.project_tools_dir, config.llvm_tools_dir]
 tools = [
     "mlir-opt",
     "mlir-runner",
-    "tutorial-opt"
+    "parpack-opt"
 ]
 
 llvm_config.add_tool_substitutions(tools, tool_dirs)

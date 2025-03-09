@@ -21,3 +21,6 @@ popd
 cmake --build $BUILD_DIR --target mlir-headers
 cmake --build $BUILD_DIR --target mlir-doc
 cmake --build $BUILD_DIR --target MLIRPacket
+cmake --build $BUILD_DIR --target MLIRParallel
+cmake --build $BUILD_DIR --target parpack-opt
+cmake --build $BUILD_DIR --target check-mlir-parpack

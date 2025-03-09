@@ -4,13 +4,15 @@ get_property(conversion_libs GLOBAL PROPERTY MLIR_CONVERSION_LIBS)
 set(LIBS
     ${dialect_libs}
     ${conversion_libs}
+    MLIROptLib
+    MLIRPass
     MLIRPacket
     MLIRParallel
 )
 
-add_llvm_executable(registrar registrar.cpp)
+add_llvm_executable(parpack-opt parpack-opt.cpp)
 
-llvm_update_compile_flags(registrar)
-target_link_libraries(registrar PRIVATE ${LIBS})
+llvm_update_compile_flags(parpack-opt)
+target_link_libraries(parpack-opt PRIVATE ${LIBS})
 
-mlir_check_all_link_libraries(registrar)
+mlir_check_all_link_libraries(parpack-opt)

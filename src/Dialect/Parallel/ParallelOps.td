@@ -7,29 +7,18 @@ include "mlir/IR/BuiltinAttributes.td"
 include "mlir/IR/OpBase.td"
 include "mlir/Interfaces/SideEffectInterfaces.td"
 
-
 //-------------------------------------------------------------------
 // Base class for Parallel dialect operations
 //-------------------------------------------------------------------
-class Parallel_Op<string mnemonic, list<Trait> traits = []> :
-    Op<Parallel_Dialect, mnemonic, traits>;
+class Parallel_Op<string mnemonic> : Op<Parallel_Dialect, mnemonic>;
 
 //-------------------------------------------------------------------
 // Counter operations
 //-------------------------------------------------------------------
-def CounterIncOp : Parallel_Op<"counter.inc", [MemoryEffects<[MemWrite]>]> {
-    let summary = "Increment a counter";
-    let description = [{
-        The `parallel.counter.inc` operation increments a counter value by 1.
-
-        Example:
-        ```mlir
-        %new_counter = parallel.counter.inc %counter : !parallel.counter
-        ```
-    }];
+def Counter_IncOp : Parallel_Op<"counter.inc"> {
+    let summary = "Increment a counter by 1.";
     let arguments = (ins Counter_UI32:$counter);
     let results = (outs Counter_UI32:$result);
-
     let assemblyFormat = "$counter attr-dict `:` type($counter)";
 }
 

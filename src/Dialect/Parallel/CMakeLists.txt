@@ -17,7 +17,6 @@ add_mlir_doc(ParallelDialect ParallelDialect Parallel/ -gen-dialect-doc)
 
 add_mlir_dialect_library(MLIRParallel
     ParallelDialect.cpp
-    ParallelOps.cpp
     DEPENDS
         MLIRParallelOpsIncGen
     LINK_LIBS PUBLIC
