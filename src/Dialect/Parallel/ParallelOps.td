@@ -27,8 +27,8 @@ def CounterIncOp : Parallel_Op<"counter.inc", [MemoryEffects<[MemWrite]>]> {
         %new_counter = parallel.counter.inc %counter : !parallel.counter
         ```
     }];
-    let arguments = (ins Counter:$counter);
-    let results = (outs Counter:$result);
+    let arguments = (ins Counter_UI32:$counter);
+    let results = (outs Counter_UI32:$result);
 
     let assemblyFormat = "$counter attr-dict `:` type($counter)";
 }

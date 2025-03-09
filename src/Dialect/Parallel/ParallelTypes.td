@@ -7,10 +7,10 @@ class Parallel_Type<string name, string typeMnemonic> : TypeDef<Parallel_Dialect
     let mnemonic = typeMnemonic;
 }
 
-def Counter : Parallel_Type<"Counter", "counter"> {
-    let summary = "A thread-safe counter type"; // TODO: not yet thread-safe
+def Counter_UI32 : Parallel_Type<"CounterUI32", "ui32"> {
+    let summary = "A thread-safe 32-bit integer counter type"; // TODO: not yet thread-safe
     let description = [{
-        A `counter` represents a shared unsigned integer alue that can be
+        A `counter` represents a shared 32-bit unsigned integer value that can be
         safely manipulated by multiple threads.
     }];
 }

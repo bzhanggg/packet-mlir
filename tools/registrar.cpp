@@ -1,4 +1,4 @@
-#include "src/Packet/PacketDialect.h"
+#include "src/Dialect/Packet/PacketDialect.h"
 #include "mlir/Tools/mlir-opt/MlirOptMain.h"
 
 #include "mlir/InitAllDialects.h"
