@@ -10,7 +10,7 @@ int main(int argc, char **argv) {
     // registry.insert<mlir::parpack::packet::PacketDialect>();
     registry.insert<mlir::parpack::parallel::ParallelDialect>();
     mlir::registerAllDialects(registry);
-    // mlir::registerAllPasses();
+    mlir::registerAllPasses();
 
     return mlir::asMainReturnCode(
         mlir::MlirOptMain(argc, argv, "Parpack Pass Driver", registry)

@@ -4,6 +4,7 @@
 include "ParallelDialect.td"
 include "ParallelTypes.td"
 include "mlir/IR/BuiltinAttributes.td"
+include "mlir/IR/BuiltinTypes.td"
 include "mlir/IR/OpBase.td"
 include "mlir/Interfaces/SideEffectInterfaces.td"
 
@@ -16,10 +17,21 @@ class Parallel_Op<string mnemonic> : Op<Parallel_Dialect, mnemonic>;
 // Counter operations
 //-------------------------------------------------------------------
 def Counter_IncOp : Parallel_Op<"counter.inc"> {
-    let summary = "Increment a counter by 1.";
-    let arguments = (ins Counter_UI32:$counter);
-    let results = (outs Counter_UI32:$result);
-    let assemblyFormat = "$counter attr-dict `:` type($counter)";
+    let summary = "Increment a counter";
+    let description = [{
+        The `parallel.counter.inc` operation increments a counter value by 1.
+
+        Example:
+        ```mlir
+        %new_counter = parallel.counter.inc %counter : !parallel.counter<i32>
+        ```
+    }];
+
+    let arguments = (ins AnyInteger:$counter);
+    let results = (outs AnyInteger:$results);
+    let assemblyFormat = "$counter attr-dict `:` type($counter) `->` type($results)";
+
+    let hasVerifier = 1;
 }
 
 #endif // DIALECT_PARALLEL_PARALLELOPS_TD_
