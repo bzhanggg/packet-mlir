@@ -9,7 +9,7 @@ set (MLIR_PARPACK_TEST_DEPENDS
     FileCheck count not
     mlir-opt
     mlir-runner
-    parpack-opt
+    # parpack-opt
 )
 
 add_lit_testsuite(check-mlir-parpack "Running the Parpack regression tests"

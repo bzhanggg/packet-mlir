@@ -15,11 +15,18 @@ class Parallel_Op<string mnemonic> : Op<Parallel_Dialect, mnemonic>;
 //-------------------------------------------------------------------
 // Counter operations
 //-------------------------------------------------------------------
-def Counter_IncOp : Parallel_Op<"counter.inc"> {
+def Parallel_IncOp : Parallel_Op<"inc"> {
     let summary = "Increment a counter by 1.";
     let arguments = (ins Counter_UI32:$counter);
     let results = (outs Counter_UI32:$result);
     let assemblyFormat = "$counter attr-dict `:` type($counter)";
+}
+
+def Parallel_ConstantOp: Op<Parallel_Dialect, "constant", [Pure, ConstantLike]> {
+    let summary = "Define a constant counter via an attribute.";
+    let arguments = (ins I32Attr:$value);
+    let results = (outs Counter_UI32:$result);
+    let assemblyFormat = "$value attr-dict `:` type($result)";
 }
 
 #endif // DIALECT_PARALLEL_PARALLELOPS_TD_
