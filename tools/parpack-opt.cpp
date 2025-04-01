@@ -1,4 +1,6 @@
 #include "mlir/IR/MLIRContext.h"
+#include "mlir/Pass/PassManager.h"
+#include "mlir/Transforms/Passes.h"
 #include "src/Dialect/Packet/PacketDialect.h"
 #include "src/Dialect/Parallel/ParallelDialect.h"
 #include "mlir/Tools/mlir-opt/MlirOptMain.h"
@@ -11,11 +13,11 @@ int main(int argc, char **argv) {
     // registry.insert<mlir::parpack::packet::PacketDialect>();
     registry.insert<mlir::parpack::parallel::ParallelDialect>();
     mlir::registerAllDialects(registry);
-    // mlir::registerAllPasses();
 
-    mlir::MLIRContext context;
-    context.appendDialectRegistry(registry);
-    context.loadDialect<mlir::parpack::parallel::ParallelDialect>();
+    mlir::MLIRContext context(registry);
+
+    mlir::registerCanonicalizerPass();
+    mlir::registerPassManagerCLOptions();
 
     return mlir::asMainReturnCode(
         mlir::MlirOptMain(argc, argv, "Parpack Pass Driver", registry)

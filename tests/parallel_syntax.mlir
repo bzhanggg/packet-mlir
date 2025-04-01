@@ -10,13 +10,13 @@ module {
 
     // CHECK-LABEL: test_increment_syntax
     func.func @test_increment_syntax(%arg0: !parallel.counter) -> !parallel.counter {
-        // CHECK: %[[RES:.*]] = parallel.counter.inc %arg0 : !parallel.counter
-        %0 = parallel.inc %arg0 : !parallel.counter
-
         // CHECK: parallel.constant
-        %10 = parallel.constant 42 : !parallel.counter
+        %0 = parallel.constant 42 : !parallel.counter
 
-        return %0: !parallel.counter
+        // CHECK: %[[RES:.*]] = parallel.inc %arg0 : !parallel.counter
+        %1 = parallel.inc %0 : !parallel.counter
+
+        return %1: !parallel.counter
     }
 
     // CHECK-LABEL: test_multiple_increments

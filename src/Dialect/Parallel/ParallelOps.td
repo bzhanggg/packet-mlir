@@ -20,6 +20,7 @@ def Parallel_IncOp : Parallel_Op<"inc"> {
     let arguments = (ins Counter_UI32:$counter);
     let results = (outs Counter_UI32:$result);
     let assemblyFormat = "$counter attr-dict `:` type($counter)";
+    let hasFolder = 1;
 }
 
 def Parallel_ConstantOp: Op<Parallel_Dialect, "constant", [Pure, ConstantLike]> {
@@ -27,6 +28,7 @@ def Parallel_ConstantOp: Op<Parallel_Dialect, "constant", [Pure, ConstantLike]> 
     let arguments = (ins I32Attr:$value);
     let results = (outs Counter_UI32:$result);
     let assemblyFormat = "$value attr-dict `:` type($result)";
+    let hasFolder = 1;
 }
 
 #endif // DIALECT_PARALLEL_PARALLELOPS_TD_
