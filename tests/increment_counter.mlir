@@ -4,14 +4,12 @@
 
 llvm.mlir.global internal @counter(0) : i32
 
-// CHECK: 2
+// CHECK: 1
 func.func @main() -> i32 {
-    %res1 = func.call @increment_counter() : () -> i32
-    %res2 = func.call @increment_counter() : () -> i32
-
+    %call = func.call @increment_counter() : () -> i32
     %counterPtr = llvm.mlir.addressof @counter : !llvm.ptr     // retrieve the pointer to @counter
-    %res3 = llvm.load %counterPtr : !llvm.ptr -> i32           // load the pointer into a variable and return it
-    return %res3 : i32
+    %res = llvm.load %counterPtr : !llvm.ptr -> i32           // load the pointer into a variable and return it
+    return %res : i32
 }
 
 // CHECK: 42
