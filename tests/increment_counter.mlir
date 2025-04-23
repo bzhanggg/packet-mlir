@@ -26,5 +26,48 @@ func.func @increment_counter() -> i32 {
     %counterPtr = llvm.mlir.addressof @counter : !llvm.ptr
     %1 = arith.constant 1 : i32
     %inc = llvm.atomicrmw "add" %counterPtr, %1 seq_cst : !llvm.ptr, i32
-    func.return %inc : i32
+    return %inc : i32
+}
+
+func.func @set_counter(%val: i32) -> () {
+    %state_ptr = llvm.mlir.addressof @counter : !llvm.ptr
+    llvm.store %val, %state_ptr : i32, !llvm.ptr
+    return
+}
+
+func.func @get_counter() -> i32 {
+    %state_ptr = llvm.mlir.addressof @counter : !llvm.ptr
+    %val = llvm.load %state_ptr : !llvm.ptr -> i32
+    return %val : i32
+}
+
+func.func @multiply_counter_by(%factor: i32) -> i32 {
+    %state_ptr = llvm.mlir.addressof @counter : !llvm.ptr
+    %state = llvm.load %state_ptr : !llvm.ptr -> i32
+    %result = arith.muli %state, %factor : i32
+    llvm.store %result, %state_ptr : i32, !llvm.ptr
+    return %result : i32
+}
+
+func.func @add_input_to_counter(%input: i32) -> i32 {
+    %state_ptr = llvm.mlir.addressof @counter : !llvm.ptr
+    %state = llvm.load %state_ptr : !llvm.ptr -> i32
+    %sum = arith.addi %state, %input : i32
+    llvm.store %sum, %state_ptr : i32, !llvm.ptr
+    return %sum : i32
+}
+
+func.func @compare_counter_to(%val: i32) -> i32 {
+    %state_ptr = llvm.mlir.addressof @counter : !llvm.ptr
+    %state = llvm.load %state_ptr : !llvm.ptr -> i32
+    %cmp = arith.cmpi sgt, %state, %val : i32
+    %res = arith.extui %cmp: i1 to i32
+    return %res : i32
+}
+
+func.func @reset_counter() -> () {
+    %zero = arith.constant 0 : i32
+    %state_ptr = llvm.mlir.addressof @counter : !llvm.ptr
+    llvm.store %zero, %state_ptr : i32, !llvm.ptr
+    return
 }
