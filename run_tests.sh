@@ -2,8 +2,6 @@
 
 BUILD_DIR=./build
 
-pushd $BUILD_DIR
-
-ninja check-mlir-parpack
+cmake --build $BUILD_DIR --target check-mlir-parpack
 
 popd
