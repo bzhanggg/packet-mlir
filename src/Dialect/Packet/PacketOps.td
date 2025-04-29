@@ -20,7 +20,7 @@ def Packet_ParseOp : Packet_Op<"parse"> {
         Builtin_MemRef:$buf,                             // type: raw bytes
         Builtin_StringAttr:$format                       // attribute: "ipv4", "ethernet", etc.
     );
-    let results = (outs Packet_HeaderType:$packet);         // parsed packet
+    let results = (outs Packet_Type:$packet);         // parsed packet
 
     let assemblyFormat = " $buf attr-dict `:` `(` type($buf) `)` `->` type($packet) ";
 }

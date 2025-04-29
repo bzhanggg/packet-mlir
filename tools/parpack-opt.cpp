@@ -10,7 +10,7 @@
 
 int main(int argc, char **argv) {
     mlir::DialectRegistry registry;
-    registry.insert<mlir::parpack::packet::PacketDialect>();
+    registry.insert<mlir::parpack::pkt::PacketDialect>();
     // registry.insert<mlir::parpack::parallel::ParallelDialect>();
     mlir::registerAllDialects(registry);
 

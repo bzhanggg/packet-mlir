@@ -13,7 +13,7 @@
 
 namespace mlir {
 namespace parpack {
-namespace packet {
+namespace pkt {
 
 void PacketDialect::initialize() {
     addTypes<
@@ -26,6 +26,6 @@ void PacketDialect::initialize() {
         >();
 }
 
-} // namespace packet
+} // namespace pkt
 } // namespace parpack
 } // namespace mlir

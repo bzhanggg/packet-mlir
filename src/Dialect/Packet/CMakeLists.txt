@@ -6,11 +6,11 @@ set(LLVM_TARGET_DEFINITIONS PacketOps.td)
 mlir_tablegen(PacketOps.h.inc -gen-op-decls)
 mlir_tablegen(PacketOps.cpp.inc -gen-op-defs)
 # types
-mlir_tablegen(PacketTypes.h.inc -gen-typedef-decls -typedefs-dialect=packet)
-mlir_tablegen(PacketTypes.cpp.inc -gen-typedef-defs -typedefs-dialect=packet)
+mlir_tablegen(PacketTypes.h.inc -gen-typedef-decls -typedefs-dialect=pkt)
+mlir_tablegen(PacketTypes.cpp.inc -gen-typedef-defs -typedefs-dialect=pkt)
 # dialect
-mlir_tablegen(PacketDialect.h.inc -gen-dialect-decls -dialect=packet)
-mlir_tablegen(PacketDialect.cpp.inc -gen-dialect-defs -dialect=packet)
+mlir_tablegen(PacketDialect.h.inc -gen-dialect-decls -dialect=pkt)
+mlir_tablegen(PacketDialect.cpp.inc -gen-dialect-defs -dialect=pkt)
 # tablegen
 add_public_tablegen_target(MLIRPacketOpsIncGen)
 add_dependencies(mlir-headers MLIRPacketOpsIncGen)
@@ -25,11 +25,6 @@ add_mlir_dialect_library(MLIRPacket
     LINK_LIBS PUBLIC
         MLIRIR
         MLIRSupport
-)
-
-target_include_directories(MLIRPacket PUBLIC
-    ${CMAKE_BINARY_DIR}/src
-    ${MLIR_INCLUDE_DIRS}
 )
 
 add_dependencies(MLIRPacket MLIRPacketOpsIncGen mlir-headers)
