@@ -2,6 +2,7 @@
 #define SRC_DIALECT_PACKET_PACKETOPS_H_
 
 #include "src/Dialect/Packet/PacketDialect.h"
+#include "src/Dialect/Packet/PacketAttrs.h"
 #include "src/Dialect/Packet/PacketTypes.h"
 #include "mlir/IR/BuiltinOps.h"
 #include "mlir/IR/BuiltinTypes.h"

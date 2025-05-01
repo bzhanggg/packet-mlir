@@ -3,6 +3,7 @@
 
 include "PacketDialect.td"
 include "PacketTypes.td"
+include "PacketAttrs.td"
 include "mlir/IR/BuiltinAttributes.td"
 include "mlir/IR/BuiltinTypes.td"
 include "mlir/IR/OpBase.td"
@@ -18,7 +19,7 @@ def Packet_ParseOp : Packet_Op<"parse"> {
     }];
     let arguments = (ins
         Builtin_MemRef:$buf,                             // type: raw bytes
-        Builtin_StringAttr:$format                       // attribute: "ipv4", "ethernet", etc.
+        ProtocolAttr:$proto                       // attribute: "ipv4", "ethernet", etc.
     );
     let results = (outs Packet_Type:$packet);         // parsed packet
 

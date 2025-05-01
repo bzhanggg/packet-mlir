@@ -6,6 +6,8 @@
 #include "llvm/ADT/TypeSwitch.h"
 
 #include "src/Dialect/Packet/PacketDialect.cpp.inc"
+#define GET_ATTRDEF_CLASSES
+#include "src/Dialect/Packet/PacketAttrDefs.cpp.inc"
 #define GET_TYPEDEF_CLASSES
 #include "src/Dialect/Packet/PacketTypes.cpp.inc"
 #define GET_OP_CLASSES
@@ -16,10 +18,16 @@ namespace parpack {
 namespace pkt {
 
 void PacketDialect::initialize() {
+    addAttributes<
+#define GET_ATTRDEF_LIST
+#include "src/Dialect/Packet/PacketAttrDefs.cpp.inc"
+        >();
+
     addTypes<
 #define GET_TYPEDEF_LIST
 #include "src/Dialect/Packet/PacketTypes.cpp.inc"
         >();
+
     addOperations<
 #define GET_OP_LIST
 #include "src/Dialect/Packet/PacketOps.cpp.inc"
