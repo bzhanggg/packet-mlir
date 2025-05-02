@@ -56,10 +56,8 @@ There's not a lot of material out there that is really user-friendly with MLIR. 
 (2025.5) One of the most difficult learning curves regarding MLIR is really understanding how Dialects are defined and how a compiler engineer interacts with it. At a surface level, a Dialect is just a collection of grammatical syntax with no well-defined attached meaning to it. What I mean by this is that it is very easy to fall into the trap of having one idea of what a particular Operation should do, or what a Type should represent, without actually attaching some known behavior to it. To attach behavior, you have to turn every one of your custom Dialect constructs into a known MLIR one through a sequence of lowerings. What you'll often see in MLIR discussions or in documentation is the `-lower-to-affine` or `-lower-to-llvm` flag, where you start rewriting your custom operations or types into something MLIR actually can recognize.
 
 Another way of understanding this is that everything you do ultimately serves the purpose of writing AST-to-AST transformations. Types and Operations allow you to create an AST of your Dialect, and Optimizations are AST-to-AST transformations that map from your Dialect to your Dialect, but somehow change the behavior of the Dialect. If you are familiar with algebraic maps, you may call this an endomorphism of AST trees.
-$$ \varphi : A \rightarrow A $$
 
 On the other hand, a Lowering pass is an AST-to-AST transformation that maps from one (set of) Dialects to another, distinct (set of) Dialects. In algebra, you might call this an isomorphism of AST trees. Here, the behavior of the input and output ASTs are the same, just expressed in a different Dialect.
-$$ \pi : A \rightarrow B $$
 
 > I say a "set of" Dialects here because Dialects are designed to coexist with each other. You can have two Dialects present at the same time in the same program, for example combining `affine` and `scf` to allow for both `for` loops (defined in affine) and `while` loops (defined in scf).
 
