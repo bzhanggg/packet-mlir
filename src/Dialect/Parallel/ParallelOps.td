@@ -6,6 +6,7 @@ include "ParallelTypes.td"
 include "mlir/IR/BuiltinAttributes.td"
 include "mlir/IR/OpBase.td"
 include "mlir/Interfaces/SideEffectInterfaces.td"
+include "mlir/IR/BuiltinTypes.td"
 
 //-------------------------------------------------------------------
 // Base class for Parallel dialect operations
@@ -18,17 +19,20 @@ class Parallel_Op<string mnemonic> : Op<Parallel_Dialect, mnemonic>;
 def Parallel_IncOp : Parallel_Op<"inc"> {
     let summary = "Increment a counter by 1.";
     let arguments = (ins Counter_UI32:$counter);
-    let results = (outs Counter_UI32:$result);
     let assemblyFormat = "$counter attr-dict `:` type($counter)";
-    let hasFolder = 1;
 }
 
-def Parallel_ConstantOp: Op<Parallel_Dialect, "constant", [Pure, ConstantLike]> {
-    let summary = "Define a constant counter via an attribute.";
-    let arguments = (ins I32Attr:$value);
-    let results = (outs Counter_UI32:$result);
-    let assemblyFormat = "$value attr-dict `:` type($result)";
-    let hasFolder = 1;
+def Parallel_SetOp : Parallel_Op<"set"> {
+    let summary = "Set a counter to a value.";
+    let arguments = (ins Counter_UI32:$counter, "unsigned int":$value);
+    let assemblyFormat = "$counter `,` $value attr-dict `:` `(` type($counter) `,` type($value) `)`";
+}
+
+def Parallel_GetOp : Parallel_Op<"get"> {
+    let summary = "Retrieve value of a counter.";
+    let arguments = (ins Counter_UI32:$counter);
+    let results = (outs "unsigned int":$value);
+    let assemblyFormat = "$counter attr-dict `:` type($counter) `->` type($value)";
 }
 
 #endif // DIALECT_PARALLEL_PARALLELOPS_TD_

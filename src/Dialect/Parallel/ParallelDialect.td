@@ -15,7 +15,6 @@ def Parallel_Dialect : Dialect {
     let cppNamespace = "::mlir::parpack::parallel";
 
     let useDefaultTypePrinterParser = 1;
-    let hasConstantMaterializer = 1;
 }
 
 #endif // DIALECT_PARALLEL_PARALLELDIALECT_TD_

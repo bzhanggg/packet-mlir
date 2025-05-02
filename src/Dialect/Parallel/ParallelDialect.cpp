@@ -28,13 +28,6 @@ void ParallelDialect::initialize() {
     >();
 }
 
-Operation *ParallelDialect::materializeConstant(OpBuilder &builder, Attribute value,
-                                                Type type, Location loc) {
-    auto constAttr = llvm::dyn_cast<IntegerAttr>(value);
-    if (!constAttr) return nullptr;
-    return builder.create<ConstantOp>(loc, type, constAttr);
-}
-
 } // namespace parallel
 } // namespace parpack
 } // namespace mlir

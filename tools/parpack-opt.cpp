@@ -14,11 +14,6 @@ int main(int argc, char **argv) {
     registry.insert<mlir::parpack::parallel::ParallelDialect>();
     mlir::registerAllDialects(registry);
 
-    mlir::MLIRContext context(registry);
-
-    mlir::registerCanonicalizerPass();
-    mlir::registerPassManagerCLOptions();
-
     return mlir::asMainReturnCode(
         mlir::MlirOptMain(argc, argv, "Parpack Pass Driver", registry)
     );
