@@ -10,7 +10,7 @@ module {
     // CHECK-LABEL: test_parse_op_syntax
     func.func @test_parse_op_syntax(%buf0: memref<i8>) -> !pkt.packet<"ipv4"> {
         // CHECK: !pkt.packet<"ipv4">
-        %pkt0 = pkt.parse %buf0 {format="ipv4"} : (memref<i8>) -> !pkt.packet<"ipv4">
+        %pkt0 = "pkt.parse"(%buf0) {format="ipv4"} : (memref<i8>) -> !pkt.packet<"ipv4">
         return %pkt0: !pkt.packet<"ipv4">
     }
 }

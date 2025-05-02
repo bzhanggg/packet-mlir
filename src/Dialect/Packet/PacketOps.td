@@ -7,7 +7,7 @@ include "mlir/IR/BuiltinAttributes.td"
 include "mlir/IR/BuiltinTypes.td"
 include "mlir/IR/OpBase.td"
 
-class Packet_Op<string mnemonic> : Op<Packet_Dialect, mnemonic>;
+class Packet_Op<string mnemonic, list<Trait> traits = []> : Op<Packet_Dialect, mnemonic, traits>;
 
 def Packet_ParseOp : Packet_Op<"parse"> {
     let summary = "Parse a raw byte buffer into a packet header.";
