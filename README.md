@@ -62,3 +62,24 @@ On the other hand, a Lowering pass is an AST-to-AST transformation that maps fro
 > I say a "set of" Dialects here because Dialects are designed to coexist with each other. You can have two Dialects present at the same time in the same program, for example combining `affine` and `scf` to allow for both `for` loops (defined in affine) and `while` loops (defined in scf).
 
 The goal of a successful MLIR pipeline, then, is to combine a sequence of optimizations and lowerings to map from your custom Dialect AST down to the LLVM dialect's AST. Once you have everything written in terms of the LLVM dialect, we can compile down to machine code and have a working binary.
+
+## Specific Knowledge for Parpack
+
+Parpack is widely partitioned into two dialects, one for parallelism and another to represent the TCP/IP stack. They are being developed in two separate branches:
+
+- `/main` develops the parallel dialect.
+- `/packet-dialect` and `/proto_enum` develop the packet dialect.
+
+Our goal is to flesh out the parallel dialect first, and only then work on developing the necessary tooling to adapt parallelism to packet processing via the packet dialect. You can explore the barebones packet dialect for yourself, but the following discussion will exclusively be on the parallel dialect.
+
+### The Parallel Dialect
+
+The Parallel dialect currently consists of exactly one type, called `counter`. This type a wrapper around a simple unsigned 32-bit integer, which can be represented in MLIR's LLVM dialect as a `llvm.mlir.global : i32`. The intent of the counter is to allow for safe atomic operations to allow for implementation of locks, mutexes, semaphores, etc. I define a few operations on the counter, as follows:
+
+| Operation    | Description |
+| -------- | ------- |
+| `inc`  | Increment a counter by 1. |
+| `set` | Set a counter to a value.  |
+| `get`    | Retrieve a value of a counter. |
+
+See the [`ParallelOps.td`](src/Dialect/Parallel/ParallelOps.td) file for more details on how the operation calls and arguments are formatted. We intend to design lowering passes to transform these operations into LLVM native operations. The desired behavior of all of these operations can be found in [`increment_counter.mlir`](tests/increment_counter.mlir).
