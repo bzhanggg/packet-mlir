@@ -1,6 +1,6 @@
 // RUN: mlir-opt %s -test-lower-to-llvm | \
-// RUN: mlir-runner -e main_2 -entry-point-result=i32 > /Volumes/workplace/packet-mlir/tests/output.txt | \
-// RUN: FileCheck %s < /Volumes/workplace/packet-mlir/tests/output.txt
+// RUN: mlir-runner -e main -entry-point-result=i32 > %t |
+// RUN: FileCheck %s < %t
 
 llvm.mlir.global internal @counter(0) : i32
 
