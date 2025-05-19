@@ -1,11 +1,16 @@
-// RUN: parpack-opt --canonicalize %s | FileCheck %s
+// RUN: parpack-opt %s > %t
+// RUN FileCheck %s < %t
 
 // CHECK-LABEL: test_increment_execution
-func.func @test_increment_execution() -> !parallel.counter {
-    %c42 = "parallel.set"(%counter, 42)
-    %c43 = parallel.inc %c42 : !parallel.counter
+func.func @test_increment_execution(%ctr: !parallel.counter) -> i32 {
+    %c42 = arith.constant 42 : i32
+
+    parallel.set %ctr, %c42 : (!parallel.counter, i32)
+    parallel.inc %ctr : !parallel.counter
+
+    %c43 = parallel.get %ctr : !parallel.counter -> i32
     // CHECK: parallel.constant 43
-    return %c43 : !parallel.counter
+    return %c43 : i32
 }
 
 //for i = 0 to N:

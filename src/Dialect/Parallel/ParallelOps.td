@@ -24,14 +24,14 @@ def Parallel_IncOp : Parallel_Op<"inc"> {
 
 def Parallel_SetOp : Parallel_Op<"set"> {
     let summary = "Set a counter to a value.";
-    let arguments = (ins Counter_UI32:$counter, "unsigned int":$value);
+    let arguments = (ins Counter_UI32:$counter, Builtin_Integer:$value);
     let assemblyFormat = "$counter `,` $value attr-dict `:` `(` type($counter) `,` type($value) `)`";
 }
 
 def Parallel_GetOp : Parallel_Op<"get"> {
     let summary = "Retrieve value of a counter.";
     let arguments = (ins Counter_UI32:$counter);
-    let results = (outs "unsigned int":$value);
+    let results = (outs Builtin_Integer:$value);
     let assemblyFormat = "$counter attr-dict `:` type($counter) `->` type($value)";
 }
 
